@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAZUARCY COMMUNITY | Free Assets</title>
+    <title>LAZUARCY COMMUNITY | Premium Assets</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-blue: #00d2ff;
-            --dark-blue: #003366;
-            --deep-ocean: #001a33;
-            --bg-black: #050505;
-            --neon-glow: 0 0 25px rgba(0, 210, 255, 0.8), 0 0 50px rgba(0, 210, 255, 0.4);
+            --gold: #ffcc00;
+            --gold-glow: 0 0 25px rgba(255, 204, 0, 0.7);
+            --bg-black: #0a0a0a;
+            --dark-grey: #151515;
+            --neon-rgb: linear-gradient(90deg, #ff0000, #ffcc00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
         }
 
         @keyframes flowRGB {
@@ -20,14 +20,17 @@
             100% { background-position: 0% 50%; }
         }
 
+        @keyframes pulseGold {
+            0% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(255, 204, 0, 0.6); }
+            100% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.3); }
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-black);
-            background: linear-gradient(-45deg, #050505, #001a33, #000c1a, #050505);
-            background-size: 400% 400%;
-            animation: flowRGB 15s ease infinite;
             color: white;
             padding: 20px;
             display: flex;
@@ -37,134 +40,239 @@
             overflow-x: hidden;
         }
 
-        /* --- JUDUL SUPER MENYALA --- */
+        /* --- JUDUL EMAS RGB GRADIENT BERGERAK --- */
         .rgb-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(24px, 8vw, 42px);
+            font-size: clamp(22px, 8vw, 40px);
             font-weight: 700;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            background: linear-gradient(90deg, #00d2ff, #ffffff, #00d2ff, #3a7bd5);
-            background-size: 200% auto;
+            background: linear-gradient(90deg, #ffcc00, #ffffff, #ffcc00, #ff00ff);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: flowRGB 2s linear infinite;
-            /* Efek Menyala Extra */
-            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.9));
-            margin-bottom: 5px;
+            animation: flowRGB 4s linear infinite;
+            filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.8));
+            margin-bottom: 10px;
+            text-align: center;
         }
 
         .logo-container { margin: 15px 0; }
         .logo-img {
-            width: clamp(100px, 25vw, 130px);
-            height: clamp(100px, 25vw, 130px);
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 3px solid var(--neon-blue);
-            box-shadow: var(--neon-glow);
+            border: 4px solid var(--gold);
+            box-shadow: var(--gold-glow);
             object-fit: cover;
-            transition: 0.5s;
         }
 
         .glass-panel {
-            background: rgba(0, 26, 51, 0.85);
+            background: rgba(10, 10, 10, 0.95);
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             border-radius: 25px;
             padding: 30px 20px;
-            border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
+            border: 2px solid var(--gold);
             text-align: center;
-            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 1;
         }
 
-        .step-box {
-            padding: 20px;
+        /* Efek Neon RGB Moving Border */
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            background: var(--neon-rgb);
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 28px;
+            animation: flowRGB 12s linear infinite;
+            opacity: 0.4;
+        }
+
+        /* --- STEP SYSTEM (SATU PER SATU) --- */
+        .step-container {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .step-item {
+            background: var(--dark-grey);
+            padding: 18px;
             border-radius: 15px;
-            background: rgba(0, 210, 255, 0.05);
-            border: 1px dashed var(--neon-blue);
-            margin-top: 15px;
+            border: 1px solid #333;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0.4;
+            pointer-events: none;
         }
 
-        .btn-sub {
-            background: #ff0000;
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 12px;
+        .step-item.active {
+            opacity: 1;
+            pointer-events: auto;
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+        }
+
+        .step-item.completed {
+            border-color: #00ff00;
+            opacity: 1;
+            background: rgba(0, 255, 0, 0.05);
+        }
+
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+            font-size: 12px;
+            color: var(--gold);
             font-weight: bold;
         }
+
+        .check-mark {
+            color: #00ff00;
+            font-weight: bold;
+            display: none;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .step-item.completed .check-mark { display: inline; }
+        .step-item.completed .btn-action, 
+        .step-item.completed .btn-verify { display: none; }
+
+        .btn-action {
+            background: var(--gold);
+            color: black;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 13px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-action:hover { transform: scale(1.02); background: white; }
 
         .btn-verify {
             background: transparent;
             color: #666;
             border: 1px solid #444;
-            padding: 12px;
-            border-radius: 12px;
-            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
             cursor: pointer;
+            font-size: 12px;
             font-weight: bold;
         }
 
-        /* --- ASSET MENU DENGAN SCROLL --- */
-        #assetMenu {
+        .btn-verify.ready {
+            border-color: var(--gold);
+            color: var(--gold);
+            animation: pulseGold 2s infinite;
+        }
+
+        #finalBtn {
             display: none;
             width: 100%;
-            max-width: 600px; 
-            margin-top: 20px;
-        }
-
-        .scroll-container {
-            max-height: 450px; 
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        /* Styling Scrollbar Keren */
-        .scroll-container::-webkit-scrollbar { width: 6px; }
-        .scroll-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
-        .scroll-container::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 10px; }
-
-        .asset-card {
-            background: rgba(13, 17, 23, 0.9);
-            padding: 15px 20px; 
+            padding: 18px;
+            margin-top: 25px;
+            background: var(--gold);
+            color: black;
+            border: none;
             border-radius: 15px;
-            border-left: 5px solid var(--neon-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: var(--gold-glow);
             transition: 0.3s;
         }
 
-        .asset-card:hover { transform: scale(1.02); background: #001a33; }
+        /* --- ASSET MENU LIST FULL & SCROLL --- */
+        #assetMenu {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+        }
 
-        .asset-info div { font-family: 'Orbitron', sans-serif; font-size: 14px; margin-bottom: 3px; }
+        .scroll-container {
+            max-height: 500px; 
+            overflow-y: auto;
+            padding: 15px;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .scroll-container::-webkit-scrollbar { width: 8px; }
+        .scroll-container::-webkit-scrollbar-track { background: #111; border-radius: 10px; }
+        .scroll-container::-webkit-scrollbar-thumb { 
+            background: var(--gold); 
+            border-radius: 10px;
+            border: 2px solid #111;
+        }
+
+        .asset-card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            transition: 0.3s;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .asset-card:last-child { margin-bottom: 0; }
+
+        .asset-card:hover { 
+            transform: translateX(5px); 
+            background: #222;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .asset-info div { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 15px; 
+            margin-bottom: 6px; 
+            color: #ffffff;
+            font-weight: 700;
+        }
+
         .badge {
-            font-size: 9px;
-            background: rgba(0, 210, 255, 0.1);
-            color: var(--neon-blue);
-            padding: 3px 8px;
-            border-radius: 4px;
+            font-size: 10px;
+            background: rgba(255, 204, 0, 0.15);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--gold);
             text-transform: uppercase;
+            font-weight: bold;
         }
 
         .btn-get {
-            background: var(--neon-blue);
-            color: #000;
-            padding: 8px 16px;
-            border-radius: 8px;
+            background: var(--gold);
+            color: black;
+            padding: 12px 22px;
+            border-radius: 10px;
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
-            font-weight: bold;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
         }
     </style>
 </head>
@@ -174,27 +282,61 @@
         <h1 class="rgb-title">LAZUARCY COMMUNITY</h1>
         
         <div class="logo-container">
-            <img src="IMG_3512.jpeg" alt="Logo Lazuarcy" class="logo-img">
+            <img src="IMG_3512.jpeg" alt="Logo" class="logo-img">
         </div>
 
-        <p style="color: #00d2ff; font-weight: bold; letter-spacing: 1px;">FREE ASSETS LAZUARCY COMMUNITY</p>
+        <p style="color: #ffcc00; font-size: 14px; font-weight: bold; letter-spacing: 1px;">PREMIUM ASSETS UNLOCKER</p>
         
-        <div class="step-box">
-            <a href="https://youtube.com/@lazuarcy" target="_blank" class="btn-sub clickable" id="subBtn">SUBSCRIBE CHANNEL</a>
-            <button class="btn-verify clickable" id="verifyBtn" disabled>VERIFYING (30s)</button>
+        <div class="step-container">
+            <div class="step-item active" id="item1">
+                <div class="step-header">
+                    <span>STEP 1: TONTON VIDEO (1 MENIT)</span>
+                    <span class="check-mark">✓ SELESAI</span>
+                </div>
+                <a href="https://youtu.be/OawgsS2dp00?si=Is4XIx19IrVPZGBC" target="_blank" class="btn-action" onclick="startTimer(1, 60)">WATCH VIDEO</a>
+                <button class="btn-verify" id="v1" disabled>VERIFY</button>
+            </div>
+
+            <div class="step-item" id="item2">
+                <div class="step-header">
+                    <span>STEP 2: SUBSCRIBE CHANNEL</span>
+                    <span class="check-mark">✓ SELESAI</span>
+                </div>
+                <a href="https://www.youtube.com/@Lazuarcytv?sub_confirmation=1" target="_blank" class="btn-action" onclick="startTimer(2, 30)">SUBSCRIBE</a>
+                <button class="btn-verify" id="v2" disabled>VERIFY</button>
+            </div>
+
+            <div class="step-item" id="item3">
+                <div class="step-header">
+                    <span>STEP 3: LIKE VIDEO</span>
+                    <span class="check-mark">✓ SELESAI</span>
+                </div>
+                <a href="https://youtu.be/OawgsS2dp00?si=Is4XIx19IrVPZGBC" target="_blank" class="btn-action" onclick="startTimer(3, 30)">LIKE VIDEO</a>
+                <button class="btn-verify" id="v3" disabled>VERIFY</button>
+            </div>
+
+            <div class="step-item" id="item4">
+                <div class="step-header">
+                    <span>STEP 4: KOMEN VIDEO</span>
+                    <span class="check-mark">✓ SELESAI</span>
+                </div>
+                <a href="https://youtu.be/OawgsS2dp00?si=Is4XIx19IrVPZGBC" target="_blank" class="btn-action" onclick="startTimer(4, 30)">COMMENT VIDEO</a>
+                <button class="btn-verify" id="v4" disabled>VERIFY</button>
+            </div>
         </div>
+
+        <button id="finalBtn">OPEN MENU ASSET</button>
     </div>
 
     <div id="assetMenu">
-        <h2 style="text-align:center; font-family:'Orbitron'; color: var(--neon-blue); margin-bottom: 20px; font-size: 18px;">FREE ASSETS LAZUARCY COMMUNITY</h2>
-        
+        <h2 class="rgb-title" style="font-size: 22px; margin-bottom: 20px;">LAZUARCY FREE ASSETS</h2>
         <div class="scroll-container">
-            <div class="asset-card" style="border-left-color: #ff9900;">
+            <div class="asset-card">
                 <div class="asset-info">
                     <div>Countdown & Announcement</div>
-                    <span class="badge" style="color:#ff9900; background:rgba(255,153,0,0.1)">File ZIP</span>
+                    <span class="badge">File ZIP</span>
                 </div>
-                <a href="https://www.mediafire.com/file/44z81q6mbgmcjgi/Countdown_dan_Announcement_.zip/file" target="_blank" class="btn-get" style="background:#ff9900;">GET</a>
+                <a href="https://www.mediafire.com/file/44z81q6mbgmcjgi/Countdown_dan_Announcement_.zip/file" target="_blank" class="btn-get">GET</a>
             </div>
 
             <div class="asset-card">
@@ -205,41 +347,41 @@
                 <a href="https://create.roblox.com/store/asset/106139965398409/Summit-Kit-Lyodiw-V1" target="_blank" class="btn-get">GET</a>
             </div>
 
-            <div class="asset-card" style="border-left-color: #34d399;">
+            <div class="asset-card">
                 <div class="asset-info">
-                    <div>Summit Kit V1</div>
-                    <span class="badge" style="color:#34d399; background:rgba(52,211,153,0.1)">File RBXM</span>
+                    <div>Summit Kit V1 (RBXM)</div>
+                    <span class="badge">File RBXM</span>
                 </div>
-                <a href="https://www.mediafire.com/file/0ksufbd78cggo33/Summit_Kit_Lyodiw_V1.rbxm/file" target="_blank" class="btn-get" style="background:#34d399;">GET</a>
+                <a href="https://www.mediafire.com/file/0ksufbd78cggo33/Summit_Kit_Lyodiw_V1.rbxm/file" target="_blank" class="btn-get">GET</a>
             </div>
 
             <div class="asset-card">
                 <div class="asset-info">
-                    <div>Help Admin</div>
+                    <div>Help Admin Tool</div>
                     <span class="badge">Roblox Asset ID</span>
                 </div>
                 <a href="https://create.roblox.com/store/asset/93386831627465/HelpAdminByLyodiw" target="_blank" class="btn-get">GET</a>
             </div>
 
-            <div class="asset-card" style="border-left-color: #34d399;">
+            <div class="asset-card">
                 <div class="asset-info">
-                    <div>Help Admin</div>
-                    <span class="badge" style="color:#34d399; background:rgba(52,211,153,0.1)">File RBXM</span>
+                    <div>Help Admin (RBXM)</div>
+                    <span class="badge">File RBXM</span>
                 </div>
-                <a href="https://www.mediafire.com/file/y2v5jkjia4t8chl/HelpAdminByLyodiw.rbxm/file" target="_blank" class="btn-get" style="background:#34d399;">GET</a>
+                <a href="https://www.mediafire.com/file/y2v5jkjia4t8chl/HelpAdminByLyodiw.rbxm/file" target="_blank" class="btn-get">GET</a>
             </div>
 
             <div class="asset-card">
                 <div class="asset-info">
-                    <div>FARMING KIT V1</div>
-                    <span class="badge">TIPE (RBXM)</span>
+                    <div>Farming Kit V1</div>
+                    <span class="badge">File RBXM</span>
                 </div>
                 <a href="https://www.mediafire.com/file/128cye2idh3dnss/FarmingKitV1Lyodiw.rbxm/file" target="_blank" class="btn-get">GET</a>
             </div>
 
             <div class="asset-card">
                 <div class="asset-info">
-                    <div>Farming Kit V1</div>
+                    <div>Farming Kit V1 ID</div>
                     <span class="badge">Roblox Asset ID</span>
                 </div>
                 <a href="https://create.roblox.com/store/asset/116976589639945/FarmingKitV1ByLyodiw" target="_blank" class="btn-get">GET</a>
@@ -248,46 +390,52 @@
     </div>
 
     <script>
-        const subBtn = document.getElementById('subBtn');
-        const verifyBtn = document.getElementById('verifyBtn');
-        const gatePanel = document.getElementById('gatePanel');
-        const assetMenu = document.getElementById('assetMenu');
+        let currentStep = 1;
 
-        let isSubscribed = false;
-        let timeLeft = 30; 
-        let timerStarted = false;
+        function startTimer(step, duration) {
+            const verifyBtn = document.getElementById(`v${step}`);
+            let time = duration;
+            
+            verifyBtn.disabled = true;
+            verifyBtn.classList.remove('ready');
 
-        subBtn.addEventListener('click', () => {
-            isSubscribed = true; 
-            if (!timerStarted) {
-                timerStarted = true;
-                verifyBtn.style.color = "var(--neon-blue)";
-                verifyBtn.style.borderColor = "var(--neon-blue)";
-                
-                const countdown = setInterval(() => {
-                    timeLeft--;
-                    verifyBtn.innerText = `VERIFYING (${timeLeft}s)`;
+            const countdown = setInterval(() => {
+                verifyBtn.innerText = `WAIT (${time}s)`;
+                time--;
+
+                if (time < 0) {
+                    clearInterval(countdown);
+                    verifyBtn.innerText = "VERIFY NOW";
+                    verifyBtn.disabled = false;
+                    verifyBtn.classList.add('ready');
                     
-                    if (timeLeft <= 0) {
-                        clearInterval(countdown);
-                        verifyBtn.innerText = "UNLOCK ASSETS ✓";
-                        verifyBtn.style.background = "var(--neon-blue)";
-                        verifyBtn.style.color = "#000";
-                        verifyBtn.disabled = false;
-                    }
-                }, 1000);
-            }
-        });
+                    // Klik Verifikasi untuk lanjut ke step berikutnya
+                    verifyBtn.onclick = () => completeStep(step);
+                }
+            }, 1000);
+        }
 
-        verifyBtn.addEventListener('click', () => {
-            if (isSubscribed) {
-                gatePanel.style.display = "none";
-                assetMenu.style.display = "block";
-                window.scrollTo(0, 0); 
+        function completeStep(step) {
+            const item = document.getElementById(`item${step}`);
+            item.classList.remove('active');
+            item.classList.add('completed');
+            
+            if (step < 4) {
+                currentStep = step + 1;
+                const nextItem = document.getElementById(`item${currentStep}`);
+                nextItem.classList.add('active');
+                // Scroll otomatis ke step aktif berikutnya
+                nextItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                alert("SUBSCRIBE DULU YA");
-                location.reload(); 
+                document.getElementById('finalBtn').style.display = 'block';
+                document.getElementById('finalBtn').scrollIntoView({ behavior: 'smooth' });
             }
+        }
+
+        document.getElementById('finalBtn').addEventListener('click', () => {
+            document.getElementById('gatePanel').style.display = 'none';
+            document.getElementById('assetMenu').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
