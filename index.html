@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +40,7 @@
             overflow-x: hidden;
         }
 
-        /* --- GOLD RGB GRADIENT MOVING TITLE --- */
+        /* --- JUDUL EMAS RGB GRADIENT BERGERAK --- */
         .rgb-title {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(22px, 8vw, 40px);
@@ -79,7 +79,7 @@
             z-index: 1;
         }
 
-        /* Neon RGB Moving Border Effect */
+        /* Efek Neon RGB Moving Border */
         .glass-panel::after {
             content: '';
             position: absolute;
@@ -92,7 +92,7 @@
             opacity: 0.4;
         }
 
-        /* --- STEP SYSTEM (ONE BY ONE) --- */
+        /* --- STEP SYSTEM (SATU PER SATU) --- */
         .step-container {
             margin-top: 25px;
             display: flex;
@@ -290,8 +290,8 @@
         <div class="step-container">
             <div class="step-item active" id="item1">
                 <div class="step-header">
-                    <span>STEP 1: WATCH VIDEO (1 MINUTE)</span>
-                    <span class="check-mark">✓ COMPLETED</span>
+                    <span>STEP 1: TONTON VIDEO (1 MENIT)</span>
+                    <span class="check-mark">✓ SELESAI</span>
                 </div>
                 <a href="https://youtu.be/OawgsS2dp00?si=Is4XIx19IrVPZGBC" target="_blank" class="btn-action" onclick="startTimer(1, 60)">WATCH VIDEO</a>
                 <button class="btn-verify" id="v1" disabled>VERIFY</button>
@@ -300,7 +300,7 @@
             <div class="step-item" id="item2">
                 <div class="step-header">
                     <span>STEP 2: SUBSCRIBE CHANNEL</span>
-                    <span class="check-mark">✓ COMPLETED</span>
+                    <span class="check-mark">✓ SELESAI</span>
                 </div>
                 <a href="https://www.youtube.com/@Lazuarcytv?sub_confirmation=1" target="_blank" class="btn-action" onclick="startTimer(2, 30)">SUBSCRIBE</a>
                 <button class="btn-verify" id="v2" disabled>VERIFY</button>
@@ -309,7 +309,7 @@
             <div class="step-item" id="item3">
                 <div class="step-header">
                     <span>STEP 3: LIKE VIDEO</span>
-                    <span class="check-mark">✓ COMPLETED</span>
+                    <span class="check-mark">✓ SELESAI</span>
                 </div>
                 <a href="https://youtu.be/OawgsS2dp00?si=Is4XIx19IrVPZGBC" target="_blank" class="btn-action" onclick="startTimer(3, 30)">LIKE VIDEO</a>
                 <button class="btn-verify" id="v3" disabled>VERIFY</button>
@@ -317,28 +317,20 @@
 
             <div class="step-item" id="item4">
                 <div class="step-header">
-                    <span>STEP 4: COMMENT VIDEO</span>
-                    <span class="check-mark">✓ COMPLETED</span>
+                    <span>STEP 4: KOMEN VIDEO</span>
+                    <span class="check-mark">✓ SELESAI</span>
                 </div>
                 <a href="https://youtu.be/OawgsS2dp00?si=Is4XIx19IrVPZGBC" target="_blank" class="btn-action" onclick="startTimer(4, 30)">COMMENT VIDEO</a>
                 <button class="btn-verify" id="v4" disabled>VERIFY</button>
             </div>
         </div>
 
-        <button id="finalBtn">OPEN ASSET MENU</button>
+        <button id="finalBtn">OPEN MENU ASSET</button>
     </div>
 
     <div id="assetMenu">
         <h2 class="rgb-title" style="font-size: 22px; margin-bottom: 20px;">LAZUARCY FREE ASSETS</h2>
         <div class="scroll-container">
-            <div class="asset-card">
-                <div class="asset-info">
-                    <div>Scanner Backdoor</div>
-                    <span class="badge">File ZIP</span>
-                </div>
-                <a href="https://www.mediafire.com/file/9nefzn0o8rceqa4/Scanner_Backdoor_by_Lazuarcy_Community_.zip/file" target="_blank" class="btn-get">GET</a>
-            </div>
-
             <div class="asset-card">
                 <div class="asset-info">
                     <div>Countdown & Announcement</div>
@@ -393,6 +385,22 @@
                     <span class="badge">Roblox Asset ID</span>
                 </div>
                 <a href="https://create.roblox.com/store/asset/116976589639945/FarmingKitV1ByLyodiw" target="_blank" class="btn-get">GET</a>
+            </div>
+
+            <div class="asset-card">
+                <div class="asset-info">
+                    <div>Music System</div>
+                    <span class="badge">File ZIP</span>
+                </div>
+                <a href="https://www.mediafire.com/file/joki8s0atdmta6r/Music_System_by_Lazuarcy_Community_.zip/file" target="_blank" class="btn-get">GET</a>
+            </div>
+
+            <div class="asset-card">
+                <div class="asset-info">
+                    <div>Scanner Backdoor</div>
+                    <span class="badge">File ZIP</span>
+                </div>
+                <a href="https://www.mediafire.com/file/9nefzn0o8rceqa4/Scanner_Backdoor_by_Lazuarcy_Community_.zip/file" target="_blank" class="btn-get">GET</a>
             </div>
         </div>
     </div>
